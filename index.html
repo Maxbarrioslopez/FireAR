@@ -963,15 +963,14 @@
         }
 
         /* Navegación mejorada */
-        .nav-container {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-            z-index: 1000;
-        }
+.nav-container {
+    position: relative; /* ya no flotante */
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
 
         .nav-btn {
             background: linear-gradient(135deg, #ff6b35 0%, #d32f2f 100%);
