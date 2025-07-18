@@ -3,36 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FireAR - Pitch Profesional</title>
+    <title>FireAR - Validación BMC con Socios Clave</title>
     <style>
-
-        .arrow {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 2.5em;
-    padding: 12px 20px;
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    z-index: 1000;
-    user-select: none;
-    transition: background 0.3s ease;
-}
-
-.arrow:hover {
-    background: rgba(0, 0, 0, 0.85);
-}
-
-.arrow.left {
-    left: 20px;
-}
-
-.arrow.right {
-    right: 20px;
-}
-
         * {
             margin: 0;
             padding: 0;
@@ -58,10 +30,11 @@
             display: none;
             align-items: center;
             justify-content: center;
-            position: relative;
+            flex-direction: column;
+            padding: 2rem;
             background: white;
-            overflow: hidden;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s ease;
+            overflow-y: auto;
         }
 
         .slide.active {
@@ -69,162 +42,16 @@
         }
 
         .slide-content {
-            max-width: 1100px;
-            width: 90%;
-            height: 90%;
-            padding: 40px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Partículas de fondo */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
+            max-width: 1200px;
             width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 107, 53, 0.3);
-            border-radius: 50%;
-            animation: float 6s infinite ease-in-out;
-        }
-
-        .particle.green {
-            background: rgba(34, 139, 34, 0.3);
-            animation-delay: -2s;
-        }
-
-        .particle.orange {
-            background: rgba(255, 140, 0, 0.3);
-            animation-delay: -4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        /* Fondo mejorado */
-        .slide::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255,99,71,0.05) 0%, transparent 60%),
-                radial-gradient(circle at 80% 20%, rgba(34,139,34,0.05) 0%, transparent 60%),
-                radial-gradient(circle at 40% 40%, rgba(255,140,0,0.05) 0%, transparent 60%),
-                linear-gradient(45deg, transparent 40%, rgba(255,107,53,0.02) 50%, transparent 60%);
-            pointer-events: none;
-        }
-
-        /* Portada mejorada */
-        .cover-slide {
-            background: linear-gradient(135deg, #ff6b35 0%, #d32f2f 50%, #228b22 100%);
-            color: white;
-            position: relative;
-        }
-
-        .cover-slide::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 200px;
-            background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
-        }
-
-        .cover-slide .slide-content {
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            z-index: 3;
         }
 
-        .logo-enhanced {
-            width: 150px;
-            height: 150px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 50%;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4em;
-            border: 4px solid rgba(255,255,255,0.3);
-            box-shadow: 0 0 40px rgba(255,255,255,0.2);
-            animation: pulse 2s infinite;
-            backdrop-filter: blur(10px);
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .cover-slide h1 {
-            font-size: 4.2em;
-            margin-bottom: 20px;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: white !important;
-        }
-
-        .cover-slide h2 {
-            font-size: 1.6em;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            font-weight: 300;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin: 50px 0;
-        }
-
-        .team-member {
-            background: rgba(255,255,255,0.2);
-            padding: 20px;
-            border-radius: 15px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255,255,255,0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .team-member:hover {
-            transform: translateY(-5px);
-        }
-
-        .date {
-            position: absolute;
-            bottom: 30px;
-            right: 30px;
-            font-size: 1.2em;
-            z-index: 4;
-        }
-
-        /* Títulos mejorados */
+        /* Títulos */
         .slide h1 {
-            font-size: 3.2em;
+            font-size: clamp(2em, 6vw, 3.2em);
             color: #d32f2f;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             text-align: center;
             border-bottom: 5px solid #ff6b35;
             padding-bottom: 20px;
@@ -243,47 +70,195 @@
             border-radius: 2px;
         }
 
-        /* Slide 2 - Problema con gráficos */
-        .problem-stats {
+        /* Portada especial */
+        .cover-slide {
+            background: linear-gradient(135deg, #ff6b35 0%, #d32f2f 50%, #228b22 100%);
+            color: white;
+        }
+
+        .cover-slide h1 {
+            color: white !important;
+            border-bottom: 5px solid white;
+            font-size: clamp(2.5em, 8vw, 4.2em);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+        }
+
+        .cover-slide h1::after {
+            background: white;
+        }
+
+        .logo-enhanced {
+            width: clamp(100px, 15vw, 150px);
+            height: clamp(100px, 15vw, 150px);
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(2.5em, 8vw, 4em);
+            border: 4px solid rgba(255,255,255,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .team-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .team-member {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* BMC Blocks */
+        .bmc-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .bmc-block {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffccbc 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 8px solid #ff6b35;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .bmc-block.socios {
+            border-left-color: #4caf50;
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+        }
+
+        .bmc-block.recursos {
+            border-left-color: #2196f3;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        }
+
+        .bmc-block.ingresos {
+            border-left-color: #9c27b0;
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+        }
+
+        .bmc-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2em;
+        }
+
+        .bmc-block.socios .bmc-number { background: #4caf50; }
+        .bmc-block.recursos .bmc-number { background: #2196f3; }
+        .bmc-block.ingresos .bmc-number { background: #9c27b0; }
+
+        .bmc-block h3 {
+            color: #d32f2f;
+            font-size: clamp(1.2em, 4vw, 1.5em);
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+
+        .bmc-block.socios h3 { color: #2e7d32; }
+        .bmc-block.recursos h3 { color: #1976d2; }
+        .bmc-block.ingresos h3 { color: #7b1fa2; }
+
+        /* Hipótesis destacada */
+        .hypothesis-container {
+            background: linear-gradient(135deg, #fff8e1 0%, #fff3c4 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 3px solid #ffc107;
+            position: relative;
+            text-align: center;
+        }
+
+        .hypothesis-container::before {
+            content: '💡';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffc107;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+        }
+
+        .hypothesis-text {
+            font-size: clamp(1.1em, 3vw, 1.3em);
+            font-weight: bold;
+            color: #f57c00;
+            line-height: 1.5;
+        }
+
+        /* Agenda */
+        .agenda-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .agenda-item {
+            background: rgba(255,255,255,0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ff6b35;
+            transition: transform 0.3s ease;
+        }
+
+        .agenda-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .agenda-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+
+        /* Estadísticas */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
             margin: 30px 0;
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #fff3e0 0%, #ffccbc 100%);
-            padding: 30px;
-            border-radius: 20px;
-            border-left: 8px solid #ff6b35;
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            padding: 25px;
+            border-radius: 15px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: rgba(255,107,53,0.1);
-            border-radius: 50%;
-            transform: translate(30px, -30px);
-        }
-
-        .stat-number {
-            font-size: 3.5em;
-            font-weight: bold;
-            color: #d32f2f;
-            margin-bottom: 10px;
-        }
-
-        .stat-text {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 15px;
+            border: 2px solid #ef5350;
         }
 
         .stat-icon {
@@ -292,56 +267,25 @@
             display: block;
         }
 
-        .impact-visual {
-            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
-            text-align: center;
-            border: 2px solid #ef5350;
-        }
-
-        /* Slide 3 - Competencia */
-        .competition-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin: 40px 0;
-        }
-
-        .traditional-methods {
-            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
-            padding: 30px;
-            border-radius: 15px;
-            border: 2px solid #ccc;
-        }
-
-        .firear-advantages {
-            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
-            padding: 30px;
-            border-radius: 15px;
-            border: 2px solid #4caf50;
-        }
-
-        .vs-arrow {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
+        .stat-number {
             font-size: 3em;
-            color: #ff6b35;
-            background: white;
-            padding: 20px;
-            border-radius: 50%;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-weight: bold;
+            color: #d32f2f;
+            margin-bottom: 10px;
         }
 
-        /* Slide 4 - Qué es FireAR con demo */
-        .features-enhanced {
+        .stat-text {
+            font-size: 1.1em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Solución */
+        .solution-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 25px;
-            margin: 40px 0;
+            margin: 30px 0;
         }
 
         .feature-card {
@@ -351,248 +295,62 @@
             text-align: center;
             border: 2px solid #2196f3;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s;
-            opacity: 0;
-        }
-
-        .feature-card:hover::before {
-            animation: shine 0.6s ease-in-out;
         }
 
         .feature-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(33,150,243,0.3);
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+            transform: translateY(-5px);
         }
 
         .feature-icon {
-            font-size: 2.8em;
+            font-size: 2.5em;
             margin-bottom: 15px;
             display: block;
         }
 
-        .demo-mockup {
-            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
-            padding: 40px;
-            border-radius: 20px;
-            margin: 40px 0;
-            text-align: center;
-            border: 3px solid #9c27b0;
-        }
-
-        .demo-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin: 30px 0;
-            align-items: center;
-        }
-
-        .phone-mockup {
-            width: 320px;
-            height: 600px;
-            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
-            border-radius: 40px;
-            margin: 0 auto;
-            padding: 30px;
-            position: relative;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            border: 3px solid #444;
-        }
-
-        .phone-mockup::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 8px;
-            background: #666;
-            border-radius: 4px;
-        }
-
-        .phone-mockup::after {
-            content: '';
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 50px;
-            background: #333;
-            border-radius: 50%;
-            border: 2px solid #555;
-        }
-
-        .phone-screen {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #ff6b35 0%, #d32f2f 100%);
-            border-radius: 30px;
-            display: flex;
-            flex-direction: column;
-            padding: 30px 20px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .phone-screen::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 30% 20%, rgba(255,255,255,0.15) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
-        }
-
-        .app-header {
-            text-align: center;
-            margin-bottom: 25px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .app-title {
-            font-size: 1.8em;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .app-subtitle {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-
-        .app-element {
-            background: rgba(255,255,255,0.25);
-            padding: 18px;
-            margin: 12px 0;
-            border-radius: 15px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255,255,255,0.3);
-            position: relative;
-            z-index: 2;
-            transition: all 0.3s ease;
-        }
-
-        .app-element:hover {
-            background: rgba(255,255,255,0.35);
-            transform: translateX(5px);
-        }
-
-        .app-element-icon {
-            font-size: 1.5em;
-            margin-right: 10px;
-        }
-
-        .app-element-text {
-            font-size: 1.1em;
-            font-weight: 500;
-        }
-
-        .demo-features {
-            text-align: left;
-        }
-
-        .demo-features h4 {
-            color: #7b1fa2;
-            font-size: 1.4em;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .feature-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .feature-list li {
-            background: rgba(156,39,176,0.1);
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
-            border-left: 4px solid #9c27b0;
-            font-size: 1.05em;
-        }
-
-        .feature-list li::before {
-            content: '✨';
-            margin-right: 10px;
-        }
-
-        /* Slide 5 - Recursos con timeline */
+        /* Recursos */
         .resources-timeline {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin: 40px 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
         }
 
         .resource-phase {
             background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
-            padding: 30px;
+            padding: 25px;
             border-radius: 15px;
             border: 2px solid #9c27b0;
             position: relative;
         }
 
-        .phase-number {
+        .phase-icon {
             position: absolute;
             top: -15px;
             left: 20px;
             background: #9c27b0;
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            font-size: 1.2em;
         }
 
-        .resource-phase h3 {
-            color: #7b1fa2;
-            font-size: 1.4em;
-            margin-bottom: 20px;
-            margin-top: 10px;
-        }
-
-        .resource-phase ul {
+        .resource-list {
             list-style: none;
+            padding: 0;
         }
 
-        .resource-phase li {
-            padding: 10px 0;
+        .resource-list li {
+            padding: 8px 0;
             border-bottom: 1px solid rgba(156,39,176,0.2);
             position: relative;
             padding-left: 25px;
         }
 
-        .resource-phase li:before {
+        .resource-list li:before {
             content: '✓';
             position: absolute;
             left: 0;
@@ -600,426 +358,136 @@
             font-weight: bold;
         }
 
-        /* Slide 6 - Modelo de ingresos con proyecciones */
-        .revenue-container {
+        /* Beneficios */
+        .benefits-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 30px;
             margin: 30px 0;
         }
 
-        .revenue-table {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .revenue-table th {
-            background: linear-gradient(135deg, #ff6b35 0%, #d32f2f 100%);
-            color: white;
-            padding: 18px;
-            text-align: left;
-            font-size: 1.1em;
-        }
-
-        .revenue-table td {
-            padding: 15px 18px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .revenue-table tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-
-        .revenue-table tr:hover {
-            background: #f0f8ff;
-        }
-
-        .projection-chart {
+        .benefits-card {
             background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
-            padding: 30px;
-            border-radius: 15px;
-            border: 2px solid #4caf50;
-        }
-
-        .chart-container {
-            position: relative;
-            height: 250px;
-            margin: 25px 0;
-        }
-
-        .chart-bars {
-            display: flex;
-            align-items: end;
-            justify-content: center;
-            gap: 30px;
-            height: 180px;
-            margin: 20px 0;
-            position: relative;
-        }
-
-        .chart-bar {
-            width: 60px;
-            border-radius: 8px 8px 0 0;
-            position: relative;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: end;
-            box-shadow: 0 5px 15px rgba(76,175,80,0.3);
-        }
-
-        .chart-bar:hover {
-            transform: scale(1.05);
-        }
-
-        .chart-bar.year1 { 
-            height: 40%; 
-            background: linear-gradient(to top, #4caf50, #66bb6a);
-        }
-        .chart-bar.year2 { 
-            height: 70%; 
-            background: linear-gradient(to top, #66bb6a, #81c784);
-        }
-        .chart-bar.year3 { 
-            height: 100%; 
-            background: linear-gradient(to top, #81c784, #a5d6a7);
-        }
-
-        .chart-value {
-            position: absolute;
-            top: -35px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.9em;
-            font-weight: bold;
-            color: #2e7d32;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            white-space: nowrap;
-        }
-
-        .chart-label {
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.9em;
-            color: #2e7d32;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .chart-grid {
-            position: absolute;
-            left: 0;
-            right: 0;
-            height: 180px;
-            background: repeating-linear-gradient(
-                to top,
-                transparent 0px,
-                transparent 35px,
-                rgba(76,175,80,0.2) 35px,
-                rgba(76,175,80,0.2) 36px
-            );
-            pointer-events: none;
-        }
-
-        /* Slide 7 - Impacto social */
-        .impact-metrics {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .impact-card {
-            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            border: 2px solid #ff9800;
-            position: relative;
-        }
-
-        .impact-number {
-            font-size: 3em;
-            font-weight: bold;
-            color: #e65100;
-            margin-bottom: 10px;
-        }
-
-        .impact-label {
-            font-size: 1.1em;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .impact-description {
-            font-size: 0.9em;
-            color: #888;
-        }
-
-        /* Slide 8 - Roadmap */
-        .roadmap-timeline {
-            position: relative;
-            margin: 40px 0;
-            max-height: 450px;
-            overflow-y: auto;
-            padding: 20px 0;
-        }
-
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            top: 20px;
-            bottom: 20px;
-            width: 6px;
-            background: linear-gradient(to bottom, #ff6b35, #d32f2f, #4caf50, #2196f3);
-            transform: translateX(-50%);
-            border-radius: 3px;
-        }
-
-        .roadmap-item {
-            display: flex;
-            align-items: center;
-            margin: 40px 0;
-            position: relative;
-            min-height: 120px;
-        }
-
-        .roadmap-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .roadmap-content {
-            background: white;
             padding: 25px;
             border-radius: 15px;
-            width: 42%;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            border: 3px solid #ff6b35;
-            position: relative;
+            border: 3px solid #4caf50;
         }
 
-        .roadmap-item:nth-child(even) .roadmap-content {
-            border-color: #4caf50;
-        }
-
-        .roadmap-item:nth-child(3) .roadmap-content {
-            border-color: #2196f3;
-        }
-
-        .roadmap-item:nth-child(4) .roadmap-content {
-            border-color: #9c27b0;
-        }
-
-        .roadmap-content h3 {
-            color: #d32f2f;
-            font-size: 1.3em;
-            margin-bottom: 10px;
-        }
-
-        .roadmap-content p {
-            color: #666;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-
-        .roadmap-content ul {
+        .benefits-list {
             list-style: none;
             padding: 0;
         }
 
-        .roadmap-content li {
-            padding: 3px 0;
-            font-size: 0.95em;
-            color: #555;
-        }
-
-        .roadmap-dot {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 25px;
-            height: 25px;
-            background: #ff6b35;
-            border-radius: 50%;
-            border: 5px solid white;
-            z-index: 2;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-        }
-
-        .roadmap-item:nth-child(even) .roadmap-dot {
-            background: #4caf50;
-        }
-
-        .roadmap-item:nth-child(3) .roadmap-dot {
-            background: #2196f3;
-        }
-
-        .roadmap-item:nth-child(4) .roadmap-dot {
-            background: #9c27b0;
-        }
-
-        /* Arrow connector */
-        .roadmap-content::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: -15px;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            border-left: 15px solid #ff6b35;
-        }
-
-        .roadmap-item:nth-child(even) .roadmap-content::before {
-            right: auto;
-            left: -15px;
-            border-left: none;
-            border-right: 15px solid #4caf50;
-        }
-
-        .roadmap-item:nth-child(3) .roadmap-content::before {
-            border-right-color: #2196f3;
-        }
-
-        .roadmap-item:nth-child(4) .roadmap-content::before {
-            border-left-color: #9c27b0;
-        }
-
-        /* Call to Action mejorado */
-        .cta-content {
-            text-align: center;
+        .benefits-list li {
+            padding: 10px 0;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: 100%;
-            position: relative;
+            gap: 10px;
         }
 
-        .cta-quote {
-            font-size: 2.8em;
-            color: #d32f2f;
-            font-style: italic;
-            margin: 50px 0;
-            text-align: center;
-            line-height: 1.3;
-            position: relative;
-            padding: 0 30px;
+        .benefits-list li::before {
+            content: '🎯';
+            font-size: 1.2em;
         }
 
-        .cta-quote::before,
-        .cta-quote::after {
-            content: '"';
-            font-size: 1.5em;
-            color: #ff6b35;
-            position: absolute;
-        }
-
-        .cta-quote::before {
-            top: -20px;
-            left: 0;
-        }
-
-        .cta-quote::after {
-            bottom: -20px;
-            right: 0;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin: 40px 0;
-            width: 100%;
-        }
-
-        .contact-info {
+        /* Resultados */
+        .results-section {
             background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
-            padding: 35px;
-            border-radius: 20px;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
             border: 3px solid #4caf50;
         }
 
-        .contact-info h3 {
-            color: #2e7d32;
-            margin-bottom: 20px;
-            font-size: 1.4em;
+        .nps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
         }
 
-        .qr-placeholder {
-            width: 100px;
-            height: 100px;
-            background: #ddd;
+        .nps-chart {
+            background: white;
+            padding: 20px;
             border-radius: 15px;
-            margin: 20px auto;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .nps-score {
+            font-size: 4em;
+            font-weight: bold;
+            color: #4caf50;
+            margin: 20px 0;
+        }
+
+        .nps-breakdown {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            justify-content: space-around;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nps-item {
+            text-align: center;
+            min-width: 60px;
+        }
+
+        .nps-item .count {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        .nps-item .label {
             font-size: 0.9em;
             color: #666;
-            border: 2px solid #ccc;
         }
 
-        .investment-cta {
-            background: linear-gradient(135deg, #fff3e0 0%, #ffccbc 100%);
-            padding: 35px;
-            border-radius: 20px;
-            border: 3px solid #ff6b35;
-        }
-
-        .investment-cta h3 {
-            color: #d32f2f;
-            margin-bottom: 20px;
-            font-size: 1.4em;
-        }
-
-        .investment-amount {
-            font-size: 2.2em;
+        /* Key message */
+        .key-message {
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            text-align: center;
             font-weight: bold;
-            color: #ff6b35;
-            margin: 15px 0;
+            color: #2e7d32;
+            border: 3px solid #4caf50;
+            font-size: clamp(1em, 3vw, 1.2em);
+            line-height: 1.4;
         }
 
-        /* Navegación mejorada */
-.nav-container {
-    position: relative; /* ya no flotante */
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 40px;
-}
-
+        /* Navegación */
+        .nav-container {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            z-index: 1000;
+        }
 
         .nav-btn {
             background: linear-gradient(135deg, #ff6b35 0%, #d32f2f 100%);
             color: white;
             border: none;
             padding: 15px 25px;
-            border-radius: 30px;
+            border-radius: 25px;
             cursor: pointer;
             font-size: 1.1em;
+            font-weight: bold;
             transition: all 0.3s ease;
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            font-weight: 500;
+            min-width: 150px;
         }
 
         .nav-btn:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-
-        .nav-btn:active {
-            transform: translateY(-1px);
         }
 
         .nav-btn:disabled {
@@ -1028,160 +496,89 @@
             transform: none;
         }
 
-        .slide-counter {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            background: rgba(0,0,0,0.8);
+        .slide-info {
+            background: rgba(0,0,0,0.7);
             color: white;
-            padding: 12px 20px;
+            padding: 10px 20px;
             border-radius: 25px;
             font-size: 1em;
-            z-index: 1000;
             backdrop-filter: blur(10px);
         }
 
-        .key-message {
-            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
-            text-align: center;
-            font-weight: bold;
-            color: #2e7d32;
-            border: 3px solid #4caf50;
-            font-size: 1.1em;
+        .progress-bar {
+            width: 200px;
+            height: 6px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 5px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b35, #d32f2f);
+            transition: width 0.3s ease;
+            border-radius: 3px;
+            width: 9%;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .slide-content {
-                padding: 20px;
+            .slide {
+                padding: 1rem;
             }
             
-            .cover-slide h1 {
-                font-size: 2.5em;
-            }
-            
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-            
+            .bmc-container,
+            .agenda-container,
+            .stats-container,
+            .solution-grid,
             .resources-timeline {
                 grid-template-columns: 1fr;
             }
             
-            .features-enhanced {
+            .benefits-container {
                 grid-template-columns: 1fr;
             }
             
-            .problem-stats {
-                grid-template-columns: 1fr;
+            .nav-container {
+                padding: 0 1rem;
             }
             
-            .competition-grid {
-                grid-template-columns: 1fr;
+            .nav-btn {
+                min-width: 120px;
+                padding: 12px 20px;
             }
             
-            .revenue-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .impact-metrics {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-grid {
-                grid-template-columns: 1fr;
+            .progress-bar {
+                width: 150px;
             }
         }
-        @media (max-width: 768px) {
-    .slide-content {
-        width: 95%;
-        padding: 15px;
-        font-size: 0.95em;
-    }
 
-    h1, h2, h3 {
-        font-size: 1.2em;
-        text-align: center;
-    }
-
-    .team-grid,
-    .problem-stats,
-    .competition-grid,
-    .features-enhanced,
-    .demo-grid,
-    .resources-timeline,
-    .revenue-container,
-    .impact-metrics,
-    .contact-grid,
-    .roadmap-timeline {
-        grid-template-columns: 1fr !important;
-    }
-
-    .chart-value {
-        font-size: 0.75em;
-    }
-
-    .feature-card, .stat-card, .impact-card {
-        padding: 15px;
-    }
-
-    .phone-mockup {
-        transform: scale(0.9);
-        margin: auto;
-    }
-}
-@media (max-width: 768px) {
-  .contact-grid,
-  .impact-metrics,
-  .revenue-container,
-  .resources-timeline,
-  .competition-grid,
-  .problem-stats,
-  .features-enhanced,
-  .team-grid,
-  .demo-grid,
-  .roadmap-timeline {
-    grid-template-columns: 1fr !important;
-  }
-
-  .slide-content {
-    width: 95%;
-    padding: 20px;
-    overflow-x: hidden;
-  }
-
-  body {
-    overflow-x: hidden;
-  }
-}
-
+        @media (max-width: 480px) {
+            .slide {
+                padding: 0.5rem;
+            }
+            
+            .nav-btn {
+                min-width: 100px;
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+            
+            .progress-bar {
+                width: 100px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="presentation-container">
-        <!-- Partículas animadas -->
-        <div class="particles">
-            <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-            <div class="particle green" style="left: 20%; animation-delay: 1s;"></div>
-            <div class="particle orange" style="left: 30%; animation-delay: 2s;"></div>
-            <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
-            <div class="particle green" style="left: 50%; animation-delay: 4s;"></div>
-            <div class="particle orange" style="left: 60%; animation-delay: 5s;"></div>
-            <div class="particle" style="left: 70%; animation-delay: 1.5s;"></div>
-            <div class="particle green" style="left: 80%; animation-delay: 2.5s;"></div>
-            <div class="particle orange" style="left: 90%; animation-delay: 3.5s;"></div>
-        </div>
-
-        <!-- Slide 1 - Portada -->
+        <!-- Slide 1 - Introducción -->
         <div class="slide cover-slide active">
             <div class="slide-content">
                 <div class="logo-enhanced">🔥</div>
                 <h1>FireAR</h1>
-                <h2>Educar para prevenir, tecnología para proteger</h2>
-                <p style="font-size: 1.3em; margin-bottom: 30px;">Propuesta educativa con realidad aumentada</p>
+                <h2 style="font-size: clamp(1.2em, 4vw, 1.6em); margin-bottom: 40px; opacity: 0.95;">El cambio empieza desde tu colaboración.</h2>
                 
                 <div class="team-grid">
                     <div class="team-member">
@@ -1202,649 +599,553 @@
                     </div>
                 </div>
                 
-                <div class="date">16 de Julio, 2025</div>
+                <p style="position: absolute; bottom: 30px; right: 30px; font-size: clamp(1em, 3vw, 1.2em);">17 de Julio, 2025</p>
             </div>
         </div>
 
-        <!-- Slide 2 - Problema con estadísticas -->
+        <!-- Slide 2 - ¿Qué veremos hoy? -->
         <div class="slide">
             <div class="slide-content">
-                <h1>Un problema que se repite cada verano</h1>
+                <h1>📋 ¿Qué buscamos?</h1>
                 
-                <div class="problem-stats">
+                <p style="font-size: clamp(1.1em, 3vw, 1.3em); margin-bottom: 40px; color: #666;">
+                    Presentación de FireAR
+                </p>
+                
+                <div class="agenda-container">
+                    <div class="agenda-item">
+                        <div class="agenda-number">1.</div>
+                        <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 8px;">La Problemática</div>
+                        <div style="font-size: 0.9em; color: #666;">Desconocimiento en prevención de incendios</div>
+                    </div>
+                    
+                    <div class="agenda-item">
+                        <div class="agenda-number">2.</div>
+                        <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 8px;">Importancia Educativa</div>
+                        <div style="font-size: 0.9em; color: #666;">Beneficios de la educación temprana</div>
+                    </div>
+                    
+                    <div class="agenda-item">
+                        <div class="agenda-number">3.</div>
+                        <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 8px;">Nuestra Solución</div>
+                        <div style="font-size: 0.9em; color: #666;">FireAR: tecnología + educación</div>
+                    </div>
+                    
+                    <div class="agenda-item">
+                        <div class="agenda-number">4.</div>
+                        <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 8px;">Recursos Clave</div>
+                        <div style="font-size: 0.9em; color: #666;">Lo que necesitamos para funcionar</div>
+                    </div>
+                    
+                    <div class="agenda-item">
+                        <div class="agenda-number">5.</div>
+                        <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 8px;">Fuentes de Ingreso</div>
+                        <div style="font-size: 0.9em; color: #666;">Cómo generaremos ingresos</div>
+                    </div>
+                    
+                    <div class="agenda-item">
+                        <div class="agenda-number">6.</div>
+                        <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 8px;">Beneficios Mutuos</div>
+                        <div style="font-size: 0.9em; color: #666;">Qué ganamos juntos</div>
+                    </div>
+                </div>
+
+                <div class="key-message">
+                    Esta presentación es nuestro prototipo de validación para los bloques clave del Business Model Canvas
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 - La Problemática -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>🚨 La Problemática: Desconocimiento</h1>
+                
+                <div class="stats-container">
                     <div class="stat-card">
                         <div class="stat-icon">🔥</div>
                         <div class="stat-number">90%</div>
                         <div class="stat-text">de incendios tienen causa humana</div>
-                        <p>Más de 6,000 incendios forestales anuales en Chile</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-number">6.000+</div>
+                        <div class="stat-text">incendios forestales anuales en Chile</div>
                     </div>
                     
                     <div class="stat-card">
                         <div class="stat-icon">🏫</div>
                         <div class="stat-number">78%</div>
                         <div class="stat-text">de escuelas en zonas de riesgo</div>
-                        <p>Sin programas efectivos de prevención</p>
-                    </div>
-                </div>
-                
-                <div class="impact-visual">
-                    <h3>⚠️ Métodos educativos actuales no conectan con estudiantes</h3>
-                    <p>Las metodologías tradicionales no logran el impacto necesario en la generación digital actual</p>
-                </div>
-                
-                <div class="key-message">
-                    Existe un vacío educativo en prevención que FireAR viene a resolver
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 3 - Competencia y Ventaja -->
-        <div class="slide">
-            <div class="slide-content">
-                <h1>Competencia y Ventaja Competitiva</h1>
-                
-                <div class="competition-grid">
-                    <div class="traditional-methods">
-                        <h3>📚 Métodos Tradicionales</h3>
-                        <ul>
-                            <li>• Charlas magistrales</li>
-                            <li>• Folletos informativos</li>
-                            <li>• Videos educativos</li>
-                            <li>• Simulacros básicos</li>
-                        </ul>
-                        <div style="margin-top: 20px; padding: 15px; background: #ffebee; border-radius: 10px;">
-                            <strong>Limitaciones:</strong><br>
-                            • Baja retención<br>
-                            • Poca interactividad<br>
-                            • No personalizado
-                        </div>
                     </div>
                     
-                    <div class="firear-advantages">
-                        <h3>🚀 Ventajas de FireAR</h3>
-                        <ul>
-                            <li>• Realidad Aumentada inmersiva</li>
-                            <li>• Gamificación educativa</li>
-                            <li>• Personalización por edad</li>
-                            <li>• Seguimiento en tiempo real</li>
-                        </ul>
-                        <div style="margin-top: 20px; padding: 15px; background: #e8f5e8; border-radius: 10px;">
-                            <strong>Beneficios únicos:</strong><br>
-                            • 85% mayor retención<br>
-                            • Experiencia memorable<br>
-                            • Medición de impacto
-                        </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👨‍👩‍👧‍👦</div>
+                        <div class="stat-number">65%</div>
+                        <div class="stat-text">de familias sin conocimiento preventivo</div>
                     </div>
                 </div>
-                
-                <div class="vs-arrow">VS</div>
-                
+
+                <div style="background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); padding: 25px; border-radius: 15px; margin: 30px 0; border: 3px solid #ef5350; text-align: center;">
+                    <h3 style="color: #d32f2f; margin-bottom: 15px;">⚠️ El Problema Real</h3>
+                    <p style="font-size: clamp(1.1em, 3vw, 1.3em); color: #333; line-height: 1.5;">
+                        <strong>Los métodos educativos tradicionales no están funcionando.</strong> Charlas magistrales, folletos y videos no logran el impacto necesario en la generación digital actual.
+                    </p>
+                </div>
+
                 <div class="key-message">
-                    FireAR es la primera solución educativa con RA específica para prevención de incendios en Latinoamérica
+                    Existe un vacío educativo crítico en prevención de incendios que afecta a toda la comunidad
                 </div>
             </div>
         </div>
 
-        <!-- Slide 4 - Qué es FireAR con demo -->
+        <!-- Slide 4 - Importancia de la Educación -->
         <div class="slide">
             <div class="slide-content">
-                <h1>FireAR: Aprender jugando, prevenir actuando</h1>
+                <h1>🎓 Importancia de la Educación Temprana</h1>
                 
-                <div class="features-enhanced">
+                <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); padding: 30px; border-radius: 20px; margin: 30px 0; border: 3px solid #2196f3; text-align: center;">
+                    <h3 style="color: #1976d2; margin-bottom: 20px;">🧠 ¿Por qué la infancia es clave?</h3>
+                    <p style="font-size: clamp(1.1em, 3vw, 1.3em); color: #333; line-height: 1.6;">
+                        La infancia es el período más efectivo para desarrollar <strong>hábitos preventivos duraderos</strong> y <strong>respuestas automáticas</strong> ante situaciones de emergencia.
+                    </p>
+                </div>
+
+                <div class="solution-grid">
+                    <div class="feature-card" style="border-color: #4caf50; background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);">
+                        <div class="feature-icon" style="color: #4caf50;">🧩</div>
+                        <h4 style="color: #2e7d32;">Plasticidad Cerebral</h4>
+                        <p>Mayor capacidad de aprendizaje y retención de conocimientos de seguridad</p>
+                    </div>
+                    
+                    <div class="feature-card" style="border-color: #ff9800; background: linear-gradient(135deg, #fff3e0 0%, #ffccbc 100%);">
+                        <div class="feature-icon" style="color: #ff9800;">🎯</div>
+                        <h4 style="color: #f57c00;">Formación de Hábitos</h4>
+                        <p>Los comportamientos aprendidos temprano se mantienen toda la vida</p>
+                    </div>
+                    
+                    <div class="feature-card" style="border-color: #9c27b0; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);">
+                        <div class="feature-icon" style="color: #9c27b0;">👨‍👩‍👧‍👦</div>
+                        <h4 style="color: #7b1fa2;">Efecto Multiplicador</h4>
+                        <p>Los niños transmiten conocimientos a familias y comunidad</p>
+                    </div>
+                    
+                    <div class="feature-card" style="border-color: #607d8b; background: linear-gradient(135deg, #eceff1 0%, #cfd8dc 100%);">
+                        <div class="feature-icon" style="color: #607d8b;">⚡</div>
+                        <h4 style="color: #455a64;">Respuesta Automática</h4>
+                        <p>Desarrollo de reflejos preventivos ante situaciones de riesgo</p>
+                    </div>
+                </div>
+
+                <div class="key-message">
+                    La educación preventiva temprana es la estrategia más efectiva para reducir incendios de origen humano
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5 - Nuestra Solución -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>🚀 Nuestra Solución: FireAR</h1>
+                
+                <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); padding: 30px; border-radius: 20px; margin: 30px 0; border: 3px solid #2196f3; text-align: center;">
+                    <h3 style="color: #1976d2; margin-bottom: 20px; font-size: clamp(1.3em, 4vw, 1.8em);">🔥 FireAR</h3>
+                    <p style="font-size: clamp(1.2em, 3vw, 1.4em); color: #333; line-height: 1.6; font-weight: bold;">
+                        Plataforma educativa que combina <span style="color: #1976d2;">Realidad Aumentada</span>, <span style="color: #4caf50;">Gamificación</span> e <span style="color: #ff6b35;">Inteligencia Artificial</span> para enseñar prevención de incendios de forma inmersiva y memorable.
+                    </p>
+                </div>
+
+                <div class="solution-grid">
                     <div class="feature-card">
-                        <div class="feature-icon ar-icon">🥽</div>
+                        <div class="feature-icon">🥽</div>
                         <h4>Realidad Aumentada</h4>
-                        <p>Tecnología RA inmersiva que transforma el aula</p>
+                        <p>Simulacros virtuales inmersivos en el aula real, con fuego y humo digitales</p>
                     </div>
                     
                     <div class="feature-card">
-                        <div class="feature-icon game-icon">🎮</div>
-                        <h4>Simulacros Interactivos</h4>
-                        <p>Experiencias gamificadas de evacuación</p>
+                        <div class="feature-icon">🎮</div>
+                        <h4>Gamificación</h4>
+                        <p>Sistema de puntos, logros y desafíos que motivan el aprendizaje continuo</p>
                     </div>
                     
                     <div class="feature-card">
-                        <div class="feature-icon guide-icon">👨‍🚒</div>
-                        <h4>Bombero Virtual</h4>
-                        <p>Asistente IA personalizado</p>
+                        <div class="feature-icon">👨‍🚒</div>
+                        <h4>Bombero Virtual IA</h4>
+                        <p>Asistente inteligente que guía y personaliza la experiencia educativa</p>
                     </div>
                     
                     <div class="feature-card">
-                        <div class="feature-icon module-icon">📚</div>
-                        <h4>Módulos Adaptativos</h4>
-                        <p>Contenido por nivel educativo</p>
+                        <div class="feature-icon">📚</div>
+                        <h4>Contenido Adaptativo</h4>
+                        <p>Módulos ajustados por edad, desde educación básica hasta media</p>
                     </div>
                     
                     <div class="feature-card">
-                        <div class="feature-icon track-icon">📊</div>
-                        <h4>Analytics Avanzado</h4>
-                        <p>Dashboard para docentes y familias</p>
+                        <div class="feature-icon">📊</div>
+                        <h4>Analytics Educativo</h4>
+                        <p>Dashboard para docentes con métricas de progreso y recomendaciones</p>
                     </div>
                     
                     <div class="feature-card">
-                        <div class="feature-icon" style="color: #ff5722;">🏆</div>
-                        <h4>Sistema de Logros</h4>
-                        <p>Certificaciones y recompensas</p>
+                        <div class="feature-icon">🏆</div>
+                        <h4>Certificación</h4>
+                        <p>Sistema de reconocimientos y certificados digitales oficiales</p>
                     </div>
                 </div>
+
                 <div class="key-message">
-                    FireAR transforma el aprendizaje preventivo en una experiencia inmersiva y recordable
+                    FireAR transforma el aprendizaje preventivo en una experiencia inmersiva, memorable y medible
                 </div>
             </div>
         </div>
 
-        <!-- Slide 5 - Demo FireAR -->
+        <!-- Slide 6 - Recursos Clave -->
         <div class="slide">
             <div class="slide-content">
-                <h1>🎬 Demo de la Experiencia FireAR</h1>
-                
-                <div class="demo-grid">
-                    <div class="phone-mockup">
-                        <div class="phone-screen">
-                            <div class="app-header">
-                                <div class="app-title">🔥 FireAR</div>
-                                <div class="app-subtitle">Prevención Interactiva</div>
-                            </div>
-                            
-                            <div class="app-element">
-                                <span class="app-element-icon">🥽</span>
-                                <span class="app-element-text">Simulacro AR</span>
-                            </div>
-                            
-                            <div class="app-element">
-                                <span class="app-element-icon">👨‍🚒</span>
-                                <span class="app-element-text">Bombero Virtual</span>
-                            </div>
-                            
-                            <div class="app-element">
-                                <span class="app-element-icon">🎯</span>
-                                <span class="app-element-text">Misiones</span>
-                            </div>
-                            
-                            <div class="app-element">
-                                <span class="app-element-icon">🏆</span>
-                                <span class="app-element-text">Logros</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="demo-features">
-                        <h4>🚀 Funcionalidades Clave</h4>
-                        <ul class="feature-list">
-                            <li><strong>Realidad Aumentada:</strong> Simulacros inmersivos en el aula</li>
-                            <li><strong>Gamificación:</strong> Sistema de puntos y recompensas</li>
-                            <li><strong>Inteligencia Artificial:</strong> Bombero virtual que guía el aprendizaje</li>
-                            <li><strong>Personalización:</strong> Adaptado a edad y nivel educativo</li>
-                            <li><strong>Analytics:</strong> Seguimiento de progreso en tiempo real</li>
-                        </ul>
-                    </div>
-                </div>
-                
-
-                
-                <div class="key-message">
-                    Prototipo funcional disponible para demostración en vivo
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 6 - Recursos con Timeline -->
-        <div class="slide">
-            <div class="slide-content">
-                <h1>Lo que hace posible FireAR</h1>
+                <h1>💎 Recursos Clave para FireAR</h1>
                 
                 <div class="resources-timeline">
                     <div class="resource-phase">
-                        <div class="phase-number">1</div>
-                        <h3>👥 Equipo Humano</h3>
-                        <ul>
-                            <li>Desarrolladores AR/VR</li>
+                        <div class="phase-icon">👥</div>
+                        <h4 style="color: #7b1fa2; margin-bottom: 15px; margin-top: 10px;">Equipo Humano</h4>
+                        <ul class="resource-list">
+                            <li>Desarrolladores AR/VR (Unity 3D, ARCore)</li>
+                            <li>Especialistas en IA educativa</li>
+                            <li>Diseñadores UX/UI especializados</li>
+                            <li>Psicólogos educativos</li>
+                            <li>Expertos en prevención (Bomberos)</li>
                             <li>Diseñadores instruccionales</li>
-                            <li>Especialistas en educación</li>
-                            <li>Psicólogos infantiles</li>
-                            <li>Expertos en prevención</li>
                         </ul>
                         <div style="margin-top: 15px; font-weight: bold; color: #7b1fa2;">
-                            ✅ 80% del equipo confirmado
+                            ✅ Estado: 80% confirmado
                         </div>
                     </div>
                     
                     <div class="resource-phase">
-                        <div class="phase-number">2</div>
-                        <h3>💻 Tecnología</h3>
-                        <ul>
-                            <li>Unity 3D + ARCore/ARKit</li>
-                            <li>Cloud computing (AWS)</li>
+                        <div class="phase-icon">💻</div>
+                        <h4 style="color: #7b1fa2; margin-bottom: 15px; margin-top: 10px;">Tecnología</h4>
+                        <ul class="resource-list">
+                            <li>Plataforma Unity 3D + ARCore/ARKit</li>
+                            <li>Servidores en la nube (AWS/Azure)</li>
                             <li>Base de datos escalable</li>
-                            <li>API de analytics</li>
+                            <li>APIs de analytics educativo</li>
                             <li>Dispositivos móviles/tablets</li>
+                            <li>Contenido 3D y multimedia</li>
                         </ul>
                         <div style="margin-top: 15px; font-weight: bold; color: #7b1fa2;">
-                            ⏳ Prototipo MVP desarrollado
+                            ⏳ Estado: MVP en desarrollo
                         </div>
                     </div>
                     
                     <div class="resource-phase">
-                        <div class="phase-number">3</div>
-                        <h3>🏛️ Alianzas</h3>
-                        <ul>
-                            <li>MINEDUC (validación)</li>
-                            <li>Bomberos de Chile</li>
-                            <li>Municipalidades piloto</li>
+                        <div class="phase-icon">🏛️</div>
+                        <h4 style="color: #7b1fa2; margin-bottom: 15px; margin-top: 10px;">Alianzas Institucionales</h4>
+                        <ul class="resource-list">
+                            <li>MINEDUC (validación curricular)</li>
+                            <li>Bomberos de Chile (contenido experto)</li>
+                            <li>Municipalidades (escuelas piloto)</li>
+                            <li>Universidades (investigación)</li>
                             <li>Fundaciones educativas</li>
-                            <li>Corporaciones RSE</li>
+                            <li>Empresas tecnológicas (RSE)</li>
                         </ul>
                         <div style="margin-top: 15px; font-weight: bold; color: #7b1fa2;">
-                            🤝 Cartas de apoyo obtenidas
+                            🤝 Estado: Cartas de apoyo obtenidas
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="key-message">
-                    El equipo está formado y la tecnología validada. Necesitamos escalamiento y aliados estratégicos
+                    Contamos con el equipo y la tecnología. Necesitamos socios que aporten recursos complementarios y financiamiento
                 </div>
             </div>
         </div>
 
-        <!-- Slide 7 - Modelo de ingresos con proyecciones -->
+        <!-- Slide 7 - Fuentes de Ingreso -->
         <div class="slide">
             <div class="slide-content">
-                <h1>Modelo de crecimiento y sostenibilidad</h1>
+                <h1>💰 Fuentes de Ingreso</h1>
                 
-                <div class="revenue-container">
-                    <div>
-                        <table class="revenue-table">
-                            <thead>
-                                <tr>
-                                    <th>Fuente de Ingreso</th>
-                                    <th>Detalle</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Licencias escolares</strong></td>
-                                    <td>$500.000 - $2.000.000 CLP anuales por establecimiento</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Kits educativos</strong></td>
-                                    <td>$50.000 CLP por kit físico + acceso digital</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Fondos públicos</strong></td>
-                                    <td>FOSIS, MINEDUC, CORFO ($200.000.000 CLP estimado)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Alianzas RSE</strong></td>
-                                    <td>Empresas tecnológicas y de seguros</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="projection-chart">
-                        <h3>📈 Proyección de Ingresos</h3>
-                        <div class="chart-container">
-                            <div class="chart-grid"></div>
-                            <div class="chart-bars">
-                                <div class="chart-bar year1">
-                                    <div class="chart-value">$150.000.000 CLP</div>
-                                    <div class="chart-label">Año 1</div>
-                                </div>
-                                <div class="chart-bar year2">
-                                    <div class="chart-value">$450.000.000 CLP</div>
-                                    <div class="chart-label">Año 2</div>
-                                </div>
-                                <div class="chart-bar year3">
-                                    <div class="chart-value">$750.000.000 CLP</div>
-                                    <div class="chart-label">Año 3</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="margin-top: 20px; font-size: 0.95em; background: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px;">
-                            <strong>🎯 Mercado objetivo:</strong><br>
-                            • 12,000 escuelas en Chile<br>
-                            • 3.5M estudiantes potenciales<br>
-                            • Expansión LATAM proyectada año 4
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="key-message">
-                    FireAR es viable, escalable y con retorno social e institucional garantizado
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 8 - Impacto Social -->
-        <div class="slide">
-            <div class="slide-content">
-                <h1>Impacto Social Proyectado</h1>
-                
-                <div class="impact-metrics">
-                    <div class="impact-card">
-                        <div class="impact-number">500K</div>
-                        <div class="impact-label">Estudiantes impactados</div>
-                        <div class="impact-description">En los primeros 3 años de implementación</div>
-                    </div>
-                    
-                    <div class="impact-card">
-                        <div class="impact-number">-60%</div>
-                        <div class="impact-label">Reducción de incidentes</div>
-                        <div class="impact-description">Por comportamiento humano en zonas piloto</div>
-                    </div>
-                    
-                    <div class="impact-card">
-                        <div class="impact-number">85%</div>
-                        <div class="impact-label">Retención de conocimiento</div>
-                        <div class="impact-description">Vs 30% de métodos tradicionales</div>
-                    </div>
-                </div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 40px 0;">
-                    <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); padding: 25px; border-radius: 15px; border: 2px solid #2196f3;">
-                        <h3 style="color: #1976d2; margin-bottom: 15px;">🌍 Impacto Ambiental</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 30px 0;">
+                    <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); padding: 25px; border-radius: 15px; border: 3px solid #2196f3;">
+                        <h4 style="color: #1976d2; margin-bottom: 15px; text-align: center;">🏫 Sector Educativo</h4>
                         <ul style="list-style: none; padding: 0;">
-                            <li>• Reducción de hectáreas quemadas</li>
-                            <li>• Protección de fauna silvestre</li>
-                            <li>• Preservación de recursos hídricos</li>
-                            <li>• Menor emisión de CO2</li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(25,118,210,0.2);">📋 <strong>Licencias anuales:</strong> $500K - $2M CLP</li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(25,118,210,0.2);">📦 <strong>Kits educativos:</strong> $50K CLP/unidad</li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(25,118,210,0.2);">🎓 <strong>Capacitación:</strong> $200K CLP</li>
+                            <li style="padding: 8px 0;">🔧 <strong>Soporte técnico:</strong> $100K CLP/año</li>
                         </ul>
                     </div>
                     
-                    <div style="background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%); padding: 25px; border-radius: 15px; border: 2px solid #e91e63;">
-                        <h3 style="color: #c2185b; margin-bottom: 15px;">👨‍👩‍👧‍👦 Impacto Social</h3>
+                    <div style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); padding: 25px; border-radius: 15px; border: 3px solid #9c27b0;">
+                        <h4 style="color: #7b1fa2; margin-bottom: 15px; text-align: center;">🏛️ Sector Público</h4>
                         <ul style="list-style: none; padding: 0;">
-                            <li>• Familias más preparadas</li>
-                            <li>• Comunidades resilientes</li>
-                            <li>• Cultura preventiva</li>
-                            <li>• Empleos especializados creados</li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(123,31,162,0.2);">💼 <strong>FOSIS:</strong> $50M CLP (confirmado)</li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(123,31,162,0.2);">🎯 <strong>MINEDUC:</strong> $100M CLP (proceso)</li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(123,31,162,0.2);">🚀 <strong>CORFO:</strong> $50M CLP (proyectado)</li>
+                            <li style="padding: 8px 0;">🏘️ <strong>Municipios:</strong> $30M CLP total</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%); padding: 25px; border-radius: 15px; border: 3px solid #4caf50;">
+                        <h4 style="color: #2e7d32; margin-bottom: 15px; text-align: center;">🤝 Alianzas RSE</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(46,125,50,0.2);">🏢 <strong>Empresas tech:</strong> Microsoft, Google</li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(46,125,50,0.2);">🛡️ <strong>Aseguradoras:</strong> Sponsoring programas</li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(46,125,50,0.2);">🌳 <strong>Forestales:</strong> Co-financiamiento</li>
+                            <li style="padding: 8px 0;">⚡ <strong>Eléctricas:</strong> Prevención especializada</li>
                         </ul>
                     </div>
                 </div>
-                
+
+                <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffccbc 100%); padding: 30px; border-radius: 20px; margin: 30px 0; border: 3px solid #ff6b35;">
+                    <h3 style="color: #d32f2f; text-align: center; margin-bottom: 20px;">📈 Proyección de Crecimiento</h3>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: center;">
+                        <div>
+                            <div style="font-size: 2em; color: #ff6b35; font-weight: bold;">Año 1</div>
+                            <div style="font-size: 1.5em; color: #d32f2f; font-weight: bold;">$700M CLP</div>
+                            <div style="color: #666;">5 escuelas piloto</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2em; color: #ff6b35; font-weight: bold;">Año 2</div>
+                            <div style="font-size: 1.5em; color: #d32f2f; font-weight: bold;">$1.2B CLP</div>
+                            <div style="color: #666;">50 escuelas activas</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2em; color: #ff6b35; font-weight: bold;">Año 3</div>
+                            <div style="font-size: 1.5em; color: #d32f2f; font-weight: bold;">$2.1B CLP</div>
+                            <div style="color: #666;">500 escuelas nacionales</div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="key-message">
-                    Más que una app educativa: FireAR es una inversión en el futuro sostenible de Chile
+                    Modelo de ingresos diversificado y escalable: sector público + privado + alianzas estratégicas
                 </div>
             </div>
         </div>
 
-        <!-- Slide 9 - Roadmap -->
+        <!-- Slide 8 - ¿Qué ganamos juntos? -->
         <div class="slide">
             <div class="slide-content">
-                <h1>Roadmap de Implementación</h1>
+                <h1>🎯 ¿Qué ganamos juntos?</h1>
                 
-                <div class="roadmap-timeline">
-                    <div class="timeline-line"></div>
-                    
-                    <div class="roadmap-item">
-                        <div class="roadmap-content">
-                            <h3>Q3 2025 - Piloto</h3>
-                            <p><strong>Objetivo:</strong> Validación en 5 escuelas</p>
-                            <ul>
-                                <li>• Desarrollo MVP completo</li>
-                                <li>• Pruebas con 500 estudiantes</li>
-                                <li>• Métricas de usabilidad</li>
-                                <li>• Feedback docentes</li>
-                            </ul>
-                        </div>
-                        <div class="roadmap-dot"></div>
+                <div class="benefits-container">
+                    <div class="benefits-card">
+                        <h4 style="color: #2e7d32; margin-bottom: 15px; text-align: center;">🏆 Para FireAR</h4>
+                        <ul class="benefits-list">
+                            <li>Acceso a mercado validado</li>
+                            <li>Credibilidad institucional</li>
+                            <li>Recursos complementarios</li>
+                            <li>Red de distribución</li>
+                            <li>Feedback de usuarios reales</li>
+                            <li>Escalabilidad acelerada</li>
+                        </ul>
                     </div>
                     
-                    <div class="roadmap-item">
-                        <div class="roadmap-content">
-                            <h3>Q1 2026 - Escalamiento Regional</h3>
-                            <p><strong>Objetivo:</strong> 50 escuelas en 3 regiones</p>
-                            <ul>
-                                <li>• Integración con MINEDUC</li>
-                                <li>• 10,000 estudiantes activos</li>
-                                <li>• Partnerships con municipios</li>
-                                <li>• Certificación pedagógica</li>
-                            </ul>
-                        </div>
-                        <div class="roadmap-dot"></div>
-                    </div>
-                    
-                    <div class="roadmap-item">
-                        <div class="roadmap-content">
-                            <h3>Q3 2026 - Expansión Nacional</h3>
-                            <p><strong>Objetivo:</strong> 500 escuelas a nivel país</p>
-                            <ul>
-                                <li>• Cobertura nacional</li>
-                                <li>• 100,000 estudiantes</li>
-                                <li>• Alianzas corporativas</li>
-                                <li>• Preparación para LATAM</li>
-                            </ul>
-                        </div>
-                        <div class="roadmap-dot"></div>
-                    </div>
-                    
-                    <div class="roadmap-item">
-                        <div class="roadmap-content">
-                            <h3>2027+ - Expansión Internacional</h3>
-                            <p><strong>Objetivo:</strong> Líder en LATAM</p>
-                            <ul>
-                                <li>• Entrada a Colombia y Perú</li>
-                                <li>• 1M+ estudiantes</li>
-                                <li>• Hub de innovación RA educativa</li>
-                                <li>• IPO o adquisición estratégica</li>
-                            </ul>
-                        </div>
-                        <div class="roadmap-dot"></div>
+                    <div class="benefits-card">
+                        <h4 style="color: #2e7d32; margin-bottom: 15px; text-align: center;">🤝 Para Socios Clave</h4>
+                        <ul class="benefits-list">
+                            <li>Impacto social medible</li>
+                            <li>Innovación tecnológica</li>
+                            <li>Visibilidad de marca positiva</li>
+                            <li>Retorno de inversión</li>
+                            <li>Cumplimiento objetivos RSE</li>
+                            <li>Liderazgo en prevención</li>
+                        </ul>
                     </div>
                 </div>
-                
+
+                <div style="background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%); padding: 30px; border-radius: 20px; margin: 30px 0; border: 3px solid #4caf50;">
+                    <h3 style="color: #2e7d32; text-align: center; margin-bottom: 20px;">🌟 Impacto Conjunto Proyectado</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center;">
+                        <div>
+                            <div style="font-size: 2.5em; color: #4caf50; font-weight: bold;">500K</div>
+                            <div style="color: #2e7d32; font-weight: bold;">estudiantes impactados</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5em; color: #4caf50; font-weight: bold;">-60%</div>
+                            <div style="color: #2e7d32; font-weight: bold;">reducción incendios</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5em; color: #4caf50; font-weight: bold;">$50B</div>
+                            <div style="color: #2e7d32; font-weight: bold;">ahorro en daños CLP</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5em; color: #4caf50; font-weight: bold;">🥇</div>
+                            <div style="color: #2e7d32; font-weight: bold;">liderazgo regional</div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="key-message">
-                    Plan de crecimiento agresivo pero realista, con hitos medibles y escalamiento gradual
+                    Una alianza que genera valor económico, social y ambiental para todos los participantes
                 </div>
             </div>
         </div>
 
-        <!-- Slide 10 - Experiencia de Usuario -->
+        <!-- Slide 9 - Gracias -->
         <div class="slide">
             <div class="slide-content">
-                <h1>Experiencia de Usuario: Un día con FireAR</h1>
+                <h1 style="margin-bottom: 40px;">🙏 Gracias por su atención</h1>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0;">
-                    <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffccbc 100%); padding: 30px; border-radius: 15px; border: 3px solid #ff6b35;">
-                        <h3 style="color: #d32f2f; margin-bottom: 20px; text-align: center;">👩‍🏫 Para el Docente</h3>
-                        <div style="margin-bottom: 15px;">
-                            <strong>1. Preparación (5 min)</strong>
-                            <p>• Selecciona módulo por edad<br>• Define objetivos de aprendizaje<br>• Configura dispositivos AR</p>
-                        </div>
-                        <div style="margin-bottom: 15px;">
-                            <strong>2. Clase Interactiva (30 min)</strong>
-                            <p>• Simulacro virtual de evacuación<br>• Estudiantes siguen al bombero AR<br>• Gamificación en tiempo real</p>
-                        </div>
-                        <div>
-                            <strong>3. Evaluación (10 min)</strong>
-                            <p>• Dashboard con métricas<br>• Reporte automático<br>• Recomendaciones personalizadas</p>
-                        </div>
+                <div style="background: linear-gradient(135deg, #ff6b35 0%, #d32f2f 50%, #228b22 100%); color: white; padding: 40px; border-radius: 25px; margin: 40px 0;">
+                    <h2 style="font-size: 2.5em; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                        "Juntos podemos crear un futuro más seguro"
+                    </h2>
+                    
+                    <p style="font-size: 1.3em; margin-bottom: 30px; opacity: 0.9;">
+                        FireAR está listo para transformar la educación preventiva en Chile
+                    </p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin: 40px 0;">
+                    <div style="background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%); padding: 30px; border-radius: 20px; border: 3px solid #4caf50;">
+                        <h3 style="color: #2e7d32; margin-bottom: 20px;">📞 ¿Preguntas? ¿Dudas?</h3>
+                        <p style="color: #333; margin-bottom: 20px; font-size: 1.1em;">
+                            Estamos aquí para responder todas sus consultas sobre FireAR y las oportunidades de colaboración
+                        </p>
+                        <div style="font-size: 3em; margin: 20px 0;">🗣️</div>
+                        <p style="color: #2e7d32; font-weight: bold;">
+                            ¡Abramos el diálogo!
+                        </p>
                     </div>
                     
-                    <div style="background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%); padding: 30px; border-radius: 15px; border: 3px solid #4caf50;">
-                        <h3 style="color: #2e7d32; margin-bottom: 20px; text-align: center;">🧒 Para el Estudiante</h3>
-                        <div style="margin-bottom: 15px;">
-                            <strong>🎮 Gamificación</strong>
-                            <p>• Puntos por acciones correctas<br>• Badges de prevención<br>• Ranking de clase</p>
-                        </div>
-                        <div style="margin-bottom: 15px;">
-                            <strong>🥽 Experiencia AR</strong>
-                            <p>• Ve fuego virtual en el aula<br>• Interactúa con objetos 3D<br>• Practica rutas de evacuación</p>
-                        </div>
-                        <div>
-                            <strong>🏆 Progreso</strong>
-                            <p>• Certificados digitales<br>• Historial de logros<br>• Contenido desbloqueado</p>
-                        </div>
+                    <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffccbc 100%); padding: 30px; border-radius: 20px; border: 3px solid #ff6b35;">
+                        <h3 style="color: #d32f2f; margin-bottom: 20px;">🤝 Próximos Pasos</h3>
+                        <ul style="list-style: none; padding: 0; text-align: left;">
+                            <li style="padding: 8px 0;">📋 Formalizar acuerdos de colaboración</li>
+                            <li style="padding: 8px 0;">🎯 Definir roles y responsabilidades</li>
+                            <li style="padding: 8px 0;">🚀 Iniciar implementación piloto</li>
+                            <li style="padding: 8px 0;">📊 Establecer métricas de seguimiento</li>
+                        </ul>
                     </div>
                 </div>
-                
-                <div style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); padding: 30px; border-radius: 15px; margin: 30px 0; border: 3px solid #9c27b0;">
-                    <h3 style="color: #7b1fa2; margin-bottom: 20px; text-align: center;">📊 Métricas de Impacto en Tiempo Real</h3>
-                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center;">
-                        <div>
-                            <div style="font-size: 2em; color: #9c27b0;">95%</div>
-                            <div>Participación</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 2em; color: #9c27b0;">12 seg</div>
-                            <div>Tiempo promedio de reacción</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 2em; color: #9c27b0;">87%</div>
-                            <div>Respuestas correctas</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 2em; color: #9c27b0;">4.8/5</div>
-                            <div>Satisfacción estudiantes</div>
-                        </div>
+
+                <div style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); padding: 25px; border-radius: 15px; margin: 30px 0; border: 3px solid #9c27b0;">
+                    <h3 style="color: #7b1fa2; margin-bottom: 15px; text-align: center;">📧 Contacto</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; text-align: center;">
+                        <div><strong>Email:</strong><br><span style="color: #9c27b0;">contacto@firear.edu</span></div>
+                        <div><strong>Teléfono:</strong><br><span style="color: #9c27b0;">+56 9 8765 4321</span></div>
+                        <div><strong>LinkedIn:</strong><br><span style="color: #9c27b0;">/company/firear</span></div>
+                        <div><strong>Web:</strong><br><span style="color: #9c27b0;">www.firear.edu</span></div>
                     </div>
                 </div>
-                
-                <div class="key-message">
-                    La tecnología al servicio de la educación: aprendizaje efectivo, medible y memorable
+
+                <div style="font-size: 1.5em; color: #d32f2f; font-weight: bold; margin: 30px 0;">
+                    "¿Te sumas a FireAR? Estamos abiertos a tus preguntas e ideas"
                 </div>
             </div>
         </div>
 
-        <!-- Slide 11 - Call to Action -->
-        <div class="slide">
-            <div class="slide-content">
-                <div class="cta-content">
-                    <h1>FireAR está listo para avanzar... ¿y ustedes?</h1>
-                    
-                    <div class="cta-quote">
-                        Prevenir desde la sala de clases es proteger todo un futuro
-                    </div>
-                    
-                    <div class="contact-grid">
-                        <div class="contact-info">
-                            <h3>📞 Contacto del Equipo</h3>
-                            <div class="qr-placeholder">QR Code<br>Pitch Deck</div>
-                            <p><strong>Email:</strong> contacto@firear.edu</p>
-                            <p><strong>Teléfono:</strong> +56 9 8765 4321</p>
-                            <p><strong>LinkedIn:</strong> /company/firear-chile</p>
-                            <p><strong>Web:</strong> www.firear.edu</p>
-                        </div>
-                        
-                        <div class="investment-cta">
-                            <h3>💰 Inversión Requerida</h3>
-                            <div class="investment-amount">$800.000.000 CLP</div>
-                            <p><strong>Distribución del capital:</strong></p>
-                            <ul style="text-align: left; margin: 15px 0;">
-                                <li>• Desarrollo tecnológico (40%)</li>
-                                <li>• Marketing y ventas (30%)</li>
-                                <li>• Equipo y operaciones (20%)</li>
-                                <li>• Capital de trabajo (10%)</li>
-                            </ul>
-                            <p><strong>ROI proyectado:</strong> 300% en 3 años</p>
-                        </div>
-                    </div>
-                    
-                    <div class="key-message" style="margin-top: 30px; font-size: 1.3em;">
-                        Esta es la oportunidad de ser parte de un cambio con sentido, impacto y visión de futuro
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Navegación -->
+        <!-- Navegación simple y funcional -->
         <div class="nav-container">
-            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Anterior</button>
-            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Siguiente →</button>
-        </div>
-
-        <!-- Contador de slides -->
-        <div class="slide-counter">
-            <span id="currentSlide">1</span> / <span id="totalSlides">11</span>
+            <button class="nav-btn prev-btn">← Anterior</button>
+            
+            <div class="slide-info">
+                <div>Slide <span id="currentSlide">1</span> de <span id="totalSlides">11</span></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+            
+            <button class="nav-btn next-btn">Siguiente →</button>
         </div>
     </div>
-<!-- Flechas laterales -->
-<div class="arrow left" onclick="changeSlide(-1)">←</div>
-<div class="arrow right" onclick="changeSlide(1)">→</div>
-<!-- Contador de slides -->
-<div class="slide-counter">
-    <span id="currentSlide">1</span> / <span id="totalSlides">11</span>
-</div>
-
-<!-- AQUÍ PONES ESTO -->
-<div class="arrow left" onclick="changeSlide(-1)">←</div>
-<div class="arrow right" onclick="changeSlide(1)">→</div>
 
     <script>
-        let currentSlideIndex = 0;
         const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        
-        document.getElementById('totalSlides').textContent = totalSlides;
-        
+        const nextBtn = document.querySelector('.next-btn');
+        const prevBtn = document.querySelector('.prev-btn');
+        let currentSlide = 0;
+
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / slides.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
         function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                slide.style.display = i === index ? 'flex' : 'none';
+            });
             slides[index].classList.add('active');
             
+            // Actualizar contador
             document.getElementById('currentSlide').textContent = index + 1;
-            document.getElementById('prevBtn').disabled = index === 0;
-            document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+            document.getElementById('totalSlides').textContent = slides.length;
+            
+            // Actualizar progreso
+            updateProgress();
+            
+            // Actualizar botones
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === slides.length - 1;
+            
+            prevBtn.style.opacity = prevBtn.disabled ? '0.5' : '1';
+            nextBtn.style.opacity = nextBtn.disabled ? '0.5' : '1';
         }
-        
-        function changeSlide(direction) {
-            const newIndex = currentSlideIndex + direction;
-            if (newIndex >= 0 && newIndex < totalSlides) {
-                currentSlideIndex = newIndex;
-                showSlide(currentSlideIndex);
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
             }
         }
-        
-        // Navegación con teclado
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Event listeners
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') changeSlide(-1);
-            if (e.key === 'ArrowRight') changeSlide(1);
-            if (e.key === 'Home') {
-                currentSlideIndex = 0;
-                showSlide(currentSlideIndex);
-            }
-            if (e.key === 'End') {
-                currentSlideIndex = totalSlides - 1;
-                showSlide(currentSlideIndex);
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                currentSlide = 0;
+                showSlide(currentSlide);
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                currentSlide = slides.length - 1;
+                showSlide(currentSlide);
             }
         });
-        
-        // Generar partículas dinámicamente
-        function createParticles() {
-            const particlesContainer = document.querySelector('.particles');
-            for (let i = 0; i < 15; i++) {
-                const particle = document.createElement('div');
-                particle.className = `particle ${Math.random() > 0.6 ? 'green' : Math.random() > 0.3 ? 'orange' : ''}`;
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particlesContainer.appendChild(particle);
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide(); // Swipe left = next
+                } else {
+                    prevSlide(); // Swipe right = previous
+                }
             }
-        }
-        
+        });
+
         // Inicializar
-        showSlide(0);
-        createParticles();
-        
-        // Efecto de transición suave
-        let isTransitioning = false;
-        function smoothTransition(direction) {
-            if (isTransitioning) return;
-            isTransitioning = true;
-            
-            const current = slides[currentSlideIndex];
-            current.style.transform = `translateX(${direction * -100}%)`;
-            
-            setTimeout(() => {
-                changeSlide(direction);
-                const newCurrent = slides[currentSlideIndex];
-                newCurrent.style.transform = `translateX(${direction * 100}%)`;
-                
-                setTimeout(() => {
-                    newCurrent.style.transform = 'translateX(0)';
-                    isTransitioning = false;
-                }, 50);
-            }, 300);
-        }
+        showSlide(currentSlide);
     </script>
 </body>
 </html>
